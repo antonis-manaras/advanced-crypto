@@ -1,7 +1,6 @@
  # -*- coding: utf-8 -*-
 from cryptography.fernet import Fernet
-import truths
-import logiccircuit as lc
+import random
 
 print "\n\n"
 print "=" * 90
@@ -10,8 +9,12 @@ print "=" * 90
 key = Fernet.generate_key()
 print "Key: " + key
 
+
+# Key creation
 cipher_suite = Fernet(key)
 
+
+# Initial inputs
 vals = [
 [0, 0, 0],
 [0, 0, 1],
@@ -23,8 +26,47 @@ vals = [
 [1, 1, 1]
 ]
 
-S_out = {}
-Cout_out = {}
+# Random values creation (vals2 <--- random gia kathe keli tou val1)
+
+vals2 = [
+[random.randint(1,10000), random.randint(1,10000), random.randint(1,10000)],
+[random.randint(1,10000), random.randint(1,10000), random.randint(1,10000)],
+[random.randint(1,10000), random.randint(1,10000), random.randint(1,10000)],
+[random.randint(1,10000), random.randint(1,10000), random.randint(1,10000)],
+[random.randint(1,10000), random.randint(1,10000), random.randint(1,10000)],
+[random.randint(1,10000), random.randint(1,10000), random.randint(1,10000)],
+[random.randint(1,10000), random.randint(1,10000), random.randint(1,10000)],
+[random.randint(1,10000), random.randint(1,10000), random.randint(1,10000)],
+]
+
+# =======================================================
+
+encrypted_vals = {
+'x0' : '',
+'y0' : '',
+'cin0' : '',
+'x1' : '',
+'y1' : '',
+'cin1' : '',
+'x2' : '',
+'y2' : '',
+'cin2' : '',
+'x3' : '',
+'y3' : '',
+'cin3' : '',
+'x4': '',
+'y4' : '',
+'cin4' : '',
+'x5' : '',
+'y5' : '',
+'cin' : '',
+'x6' : '',
+'y6' : '',
+'cin6' : '',
+'x7' : '',
+'y7' : '',
+'cin7': ''
+}
 
 for i in range(len(vals)):
     # initial values
@@ -32,9 +74,20 @@ for i in range(len(vals)):
     print "=" * 90
     print "Initial values"
     print "=" * 90
-    x = vals[i][0]
-    y = vals[i][1]
-    cin = vals[i][2]
+
+
+    x = cipher_suite.encrypt(bytes(vals2[i][0]))
+    y = cipher_suite.encrypt(bytes(vals2[i][1]))
+    cin = cipher_suite.encrypt(bytes(vals2[i][2]))
+
+    encrypted_vals ['x'+str(i)] = x
+    encrypted_vals ['y'+str(i)] = y
+    encrypted_vals ['cin'+str(i)] = cin
+
+
+    # x = encr_vals[i][0] # <---
+    # y = int(encr_vals[i][1]) # <---
+    # cin = int(encr_vals[i][2]) # <---
 
     print "x= " + str(x) + ", y= " + str(y) + ", cin= " + str(cin)
 
@@ -166,27 +219,27 @@ Cout_out
 
 
 #
-# # int to byte
-# print "\n\n"
-# print "=" * 90
-# print " Converting int to byte"
-# print "=" * 90
-# enc_x = bytes(x)
-# print "Encoded to byte x: " + enc_x
-#
-# enc_y = bytes(y)
-# print "Encoded to byte y: " + enc_y
-#
-# # encryption
-# print "\n\n"
-# print "=" * 90
-# print "Encrypting"
-# print "=" * 90
-# encr_x = cipher_suite.encrypt(enc_x)
-# print "Encrypted x: " + encr_x
-#
-# encr_y = cipher_suite.encrypt(enc_y)
-# print "Encrypted y: " + encr_y
+# int to byte
+print "\n\n"
+print "=" * 90
+print " Converting int to byte"
+print "=" * 90
+enc_x = bytes(x)
+print "Encoded to byte x: " + enc_x
+
+enc_y = bytes(y)
+print "Encoded to byte y: " + enc_y
+
+# encryption
+print "\n\n"
+print "=" * 90
+print "Encrypting"
+print "=" * 90
+encr_x = cipher_suite.encrypt(enc_x)
+print "Encrypted x: " + encr_x
+
+encr_y = cipher_suite.encrypt(enc_y)
+print "Encrypted y: " + encr_y
 #
 # # DEBUG
 # # decryption
