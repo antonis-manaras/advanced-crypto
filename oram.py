@@ -25,18 +25,21 @@ class Oram:
 	# *********************** ACCESS ORAM *******************************
 
 	def access_oram(self, op, pos, data):
-		whole_path = []
+		bucket = []
 		print("[DEBUG] Printing nodes with pos in path: " + str(pos))
-		for i in range (0, 8):
-			if self.position_map[i][1] == pos:
-				whole_path.append(self.position_map[i][0])
-		print(whole_path)
-		if op == "write":
-			print("writing process")
+
+		for i in range (0, 8): #Check position map array
+			if self.position_map[i][1] == pos: #and add nodes with this position to bucket
+				bucket.append(self.position_map[i][0])
+
+		if op == "write": #if operation is write
+			print("writing process") #DEBUG
+
+		print(bucket) #print full path (bucket)
 
 	# *******************************************************************
 	# ****************** RUN DEBUG FUNCTIONS ****************************
 
 oram = Oram()
 oram.create_oram()
-oram.access_oram("read","1","test")
+oram.access_oram("read","1","")
