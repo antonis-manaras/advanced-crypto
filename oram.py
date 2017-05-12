@@ -1,8 +1,3 @@
-oram = Oram()
-oram.create_oram()
-print("")
-oram.access_oram("read","1","")
-print("")
 import math
 
 class Oram:
