@@ -25,12 +25,14 @@ class Oram:
 	# *********************** ACCESS ORAM *******************************
 
 	def access_oram(self, op, pos, data):
+		x = pos #store current position
 		bucket = []
 		print("[DEBUG] Printing nodes with pos in path: " + str(pos))
 
-		for i in range (0, 8): #Check position map array
-			if self.position_map[i][1] == pos: #and add nodes with this position to bucket
+		for i in range (0, 9): #Check position map array
+			if self.position_map[i][1] == pos: #and get all blocks from server P(x) in this position
 				bucket.append(self.position_map[i][0])
+				self.stash.append(self.position_map[i][0]) #set stash = stash U P(x) since i'm inside this loop
 
 		if op == "write": #if operation is write
 			print("writing process") #DEBUG
