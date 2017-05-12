@@ -1,3 +1,8 @@
+oram = Oram()
+oram.create_oram()
+print("")
+oram.access_oram("read","1","")
+print("")
 import math
 
 class Oram:
@@ -16,7 +21,7 @@ class Oram:
 
 	def create_oram(self):
 		node_id = 0
-		print("[DEBUG] Creating DEMO tree with nodes (PATH)")
+		print("[DEBUG] Creating DEMO tree with [NODE, PATH] => BUCKET CONTENTS")
 		for i in range (3):
 			for j in range (i*3):
 				self.position_map[node_id][0] = "B"+str(node_id) #ID TOU NODE
