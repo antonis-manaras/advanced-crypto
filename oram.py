@@ -19,10 +19,10 @@ class Oram:
 		print("[DEBUG] Creating DEMO tree with nodes (PATH)")
 		for i in range (3):
 			for j in range (i*3):
-				self.position_map[node_id][0] = "B"+str(node_id)
-				self.position_map[node_id][1] = str(j)
-				self.bucket[node_id] = math.pow(2, node_id)
-				print("[" + str(self.position_map[node_id][0]) + "," + str(self.position_map[node_id][1]) + "]")
+				self.position_map[node_id][0] = "B"+str(node_id) #ID TOU NODE
+				self.position_map[node_id][1] = str(j) #PATH TOU NODE
+				self.bucket[node_id] = math.pow(2, node_id) #O BUCKET DEN EXEI DOMH, EINAI = 2^L 
+				print("[" + str(self.position_map[node_id][0]) + "," + str(self.position_map[node_id][1]) + "] => " + str(self.bucket[node_id]))
 				node_id+=1
 
 	# *******************************************************************
@@ -35,7 +35,7 @@ class Oram:
 		for l in range (0, 9): #for l - 0(root) until leaf level (9)
 			if self.position_map[l][1] == pos: #and get all blocks from server P(x) in this position ( min[S,bucketsize] ??? )
 				self.stash.append(self.position_map[l][0]) #set stash = stash U P(x) since i'm inside this loop
-				print("[NODE]: " + str(self.position_map[l][0]) + " -> [BUCKET]: " + str(self.bucket[l])) #[DEBUG] print bucket
+				print("[NODE]: " + str(self.position_map[l][0]) + " , [BUCKET]: " + str(self.bucket[l])) #[DEBUG] print bucket
 
 		if op == "write": #if operation is write
 			print("writing process") #DEBUG
