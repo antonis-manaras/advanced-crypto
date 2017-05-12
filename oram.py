@@ -30,7 +30,7 @@ class Oram:
 		print("[DEBUG] Printing nodes with pos in path: " + str(pos))
 
 		for l in range (0, 9): #for l - 0(root) until leaf level (9)
-			if self.position_map[l][1] == pos: #and get all blocks from server P(x) in this position
+			if self.position_map[l][1] == pos: #and get all blocks from server P(x) in this position ( min[S,bucketsize] ??? )
 				bucket.append(self.position_map[l][0])
 				self.stash.append(self.position_map[l][0]) #set stash = stash U P(x) since i'm inside this loop
 
@@ -39,6 +39,7 @@ class Oram:
 
 		print("Bucket: " + str(bucket)) #print full path (bucket)
 		#TODO
+		#set S = STASH - S
 		#if |S| < bucketsize add dummies
 		#print("Updated Position Map: " + str(self.position_map)) #print updated position map
 
