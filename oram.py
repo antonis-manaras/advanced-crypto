@@ -1,61 +1,100 @@
 import math
+import random
+
+class BinaryTree():    
+	def __init__(self,rootid):      
+		self.left = None      
+		self.right = None      
+		self.rootid = rootid    
+
+	def getLeftChild(self):        
+		return self.left    
+
+	def getRightChild(self):        
+		return self.right    
+
+	def setNodeValue(self,value):        
+		self.rootid = value    
+
+	def getNodeValue(self):        
+		return self.rootid    
+
+	def insertRight(self,newNode):        
+		if self.right == None:            
+			self.right = BinaryTree(newNode)        
+		else:            
+			tree = BinaryTree(newNode)            
+			tree.right = self.right            
+			self.right = tree    
+
+	def insertLeft(self,newNode):        
+		if self.left == None:            
+			self.left = BinaryTree(newNode)        
+		else:            
+			tree = BinaryTree(newNode)            
+			self.left = tree            
+			tree.left = self.left
+
+	def printTree(self,tree):        
+		if tree != None:            
+			self.printTree(tree.getLeftChild())            
+			print(tree.getNodeValue())            
+			self.printTree(tree.getRightChild())
 
 class Oram:
 	#MAX ORAM SIZE
-	oram_size = 60;
- 	w, h = oram_size, oram_size
+ 	w, h = 10, 10
  	#STASH
  	stash = [[0 for x in range(w)] for y in range(h)] 
  	#POSITION MAP
 	position_map = [[0 for x in range(w)] for y in range(h)] 
-	#bucket
-	bucket = [0 for y in range(h)] 
-
+	L = 4 #We set L = 4
 	# *******************************************************************
 	# ********************* CREATE ORAM TREE ****************************
 
-	def create_oram(self):
-		node_id = 0
-		print("[DEBUG] Creating DEMO tree with [NODE, PATH] => BUCKET CONTENTS")
-		for i in range (3):
-			for j in range (i*3):
-				self.position_map[node_id][0] = "B"+str(node_id) #ID TOU NODE
-				self.position_map[node_id][1] = str(j) #PATH TOU NODE
-				self.bucket[node_id] = math.pow(2, node_id) #O BUCKET DEN EXEI DOMH, EINAI = 2^L 
-				print("[" + str(self.position_map[node_id][0]) + "," + str(self.position_map[node_id][1]) + "] => " + str(self.bucket[node_id]))
-				node_id+=1
+	def create_tree(self):
+		myTree = BinaryTree("B0")    
+		myTree.insertLeft("B1")    
+		myTree.insertRight("B2")
+		myTree.printTree(myTree)
 
 	# *******************************************************************
 	# *********************** ACCESS ORAM *******************************
 
 	def access_oram(self, op, pos, data):
 		x = pos #store current position
-		print("[DEBUG] Printing bucket and nodes with pos in path: " + str(pos))
+		new_pos = random.randint(0, math.pow(2,self.L-1)) #change this pos to random (0...2^L-1)
+		print("[DEBUG] random pos: " + str(new_pos))		
 
-		for l in range (0, 9): #for l - 0(root) until leaf level (9)
-			if self.position_map[l][1] == pos: #and get all blocks from server P(x) in this position ( min[S,bucketsize] ??? )
-				self.stash.append(self.position_map[l][0]) #set stash = stash U P(x) since i'm inside this loop
-				print("[NODE]: " + str(self.position_map[l][0]) + " , [BUCKET]: " + str(self.bucket[l])) #[DEBUG] print bucket
+		for i in range(0, self.L): #TODO MUST BE WRONG
+			self.stash[i][0] = data
+                        self.stash[i][1] = pos
 
-		if op == "write": #if operation is write
-			print("writing process") #DEBUG
-
+		#TODO data = read block from S?... but why?? 
+		
+		if op == "write":
+			print("[DEBUG] op: Write")
+			#TODO ???
+		else:
+			print("[DEBUG] op: Read")
+			
 		#TODO
-		#set S = STASH - S
-		#if |S| < bucketsize add dummies
-		#print("Updated Position Map: " + str(self.position_map)) #print updated position map
-
-	print("")
-	print("**************************************************")
-	print("PATH-ORAM by Antonis Manaras & Vasilis Kouliaridis")
-	print("**************************************************")
-	print("")
+		for i in range(self.L, 0):
+			print("TODO")
 
 	# *******************************************************************
 	# ****************** RUN DEBUG FUNCTIONS ****************************
 
-oram = Oram()
-oram.create_oram()
+
+
 print("")
-oram.access_oram("read","1","")
+print("**************************************************")
+print("PATH-ORAM by Antonis Manaras & Vasilis Kouliaridis")
+print("**************************************************")
+print("")
+
+oram = Oram()
+oram.create_tree()
+print("")
+oram.access_oram("read","1","B1")
 print("")
