@@ -45,7 +45,7 @@ class Oram:
 	#MAX ORAM SIZE
  	w, h = 10, 10
  	#STASH
- 	stash = [[0 for x in range(w)] for y in range(h)] 
+ 	stash = [] 
  	#POSITION MAP
 	position_map = [[0 for x in range(w)] for y in range(h)] 
 	L = 4 #We set L = 4
@@ -62,23 +62,25 @@ class Oram:
 	# *********************** ACCESS ORAM *******************************
 
 	def access_oram(self, op, pos, data):
-		x = pos #store current position
-		new_pos = random.randint(0, math.pow(2,self.L-1)) #change this pos to random (0...2^L-1)
-		print("[DEBUG] random pos: " + str(new_pos))		
+		#[STEP1] store current position
+		x = pos 
+		#[STEP2] change this pos to random (0...2^L-1)
+		new_pos = random.randint(0, math.pow(2,self.L-1)) 
+		#print("[DEBUG] random pos: " + str(new_pos))		
 
-		for i in range(0, self.L): #TODO MUST BE WRONG
-			self.stash[i][0] = data
-                        self.stash[i][1] = pos
 
-		#TODO data = read block from S?... but why?? 
+		#[STEP3] something with stack and buckets
+		for i in range(0, self.L):
+			print("TODO")
+
+		#[STEP4] data = block at position (pos) from stack 
+		data = self.stash[pos]
 		
+		#[STEP5] check if op is write
 		if op == "write":
 			print("[DEBUG] op: Write")
-			#TODO ???
-		else:
-			print("[DEBUG] op: Read")
-			
-		#TODO
+						
+		#[STEP6] CHANGE POSITION OF BLOCK
 		for i in range(self.L, 0):
 			print("TODO")
 
