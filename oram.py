@@ -60,12 +60,12 @@ class Oram:
 
 	def map_client(self):
 		#position map
-		position_map[0][0] = "B0"
-		position_map[0][1] = "0"
-		position_map[1][0] = "B1"
-		position_map[1][1] = "1"
-		position_map[2][0] = "B2"
-		position_map[2][1] = "2"
+		self.position_map[0][0] = "B0"
+		self.position_map[0][1] = "0"
+		self.position_map[1][0] = "B1"
+		self.position_map[1][1] = "1"
+		self.position_map[2][0] = "B2"
+		self.position_map[2][1] = "2"
 
 	# *******************************************************************
 	# *********************** ACCESS ORAM *******************************
@@ -75,7 +75,7 @@ class Oram:
 		path = 0
 		index = 0
 		for i in range(0, 3):
-			if(self.position_map[i][0] == pos)
+			if self.position_map[i][0] == pos:
 				path = self.position_map[i][1]
 				index = i
 		#[STEP1] store current position
@@ -87,9 +87,9 @@ class Oram:
 
 		#[STEP3] We read all blocks from this path
 		for i in range(0, self.L):
-			if(self.position_map[i][1] == path)
-			self.stash[i][0] = self.position_map[i][0]
-			self.stash[i][1] = path
+			if self.position_map[i][1] == path:
+				self.stash[i][0] = self.position_map[i][0]
+				self.stash[i][1] = path
 
 		#[STEP4] data = block at position (pos) from stack 
 		data = self.stash[index][0] #already have this since blocks dont have data in this project but whatever
@@ -122,5 +122,5 @@ oram.create_tree()
 print("")
 oram.map_client()
 print("")
-oram.access_oram("read","1","B1")
+oram.access_oram("read","B1","")
 print("")
