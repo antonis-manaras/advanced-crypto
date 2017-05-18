@@ -45,7 +45,7 @@ class Oram:
 	#MAX ORAM SIZE
  	w, h = 10, 10
  	#STASH
- 	stash = [] 
+ 	stash = [[0 for x in range(w)] for y in range(h)] 
  	#POSITION MAP
 	position_map = [[0 for x in range(w)] for y in range(h)] 
 	L = 4 #We set L = 4
@@ -58,31 +58,53 @@ class Oram:
 		myTree.insertRight("B2")
 		myTree.printTree(myTree)
 
+	def map_client(self):
+		#position map
+		position_map[0][0] = "B0"
+		position_map[0][1] = "0"
+		position_map[1][0] = "B1"
+		position_map[1][1] = "1"
+		position_map[2][0] = "B2"
+		position_map[2][1] = "2"
+
 	# *******************************************************************
 	# *********************** ACCESS ORAM *******************************
 
 	def access_oram(self, op, pos, data):
+		#[STEP0] since pos is block (by rizomiliotis) we must find the path by searching for this block in the stash
+		path = 0
+		index = 0
+		for i in range(0, 3):
+			if(self.position_map[i][0] == pos)
+				path = self.position_map[i][1]
+				index = i
 		#[STEP1] store current position
-		x = pos 
+		x = pos
 		#[STEP2] change this pos to random (0...2^L-1)
-		new_pos = random.randint(0, math.pow(2,self.L-1)) 
+		new_pos = 'B'+str(random.randint(0, math.pow(2,self.L-1)))
 		#print("[DEBUG] random pos: " + str(new_pos))		
 
 
-		#[STEP3] something with stack and buckets
+		#[STEP3] We read all blocks from this path
 		for i in range(0, self.L):
-			print("TODO")
+			if(self.position_map[i][1] == path)
+			self.stash[i][0] = self.position_map[i][0]
+			self.stash[i][1] = path
 
 		#[STEP4] data = block at position (pos) from stack 
-		data = self.stash[pos]
+		data = self.stash[index][0] #already have this since blocks dont have data in this project but whatever
 		
-		#[STEP5] check if op is write
+		#[STEP5] check if op is write (and remove this block from the stash)
 		if op == "write":
-			print("[DEBUG] op: Write")
+			stash[index][0] = ""
+			stash[index][1] = ""
 						
 		#[STEP6] CHANGE POSITION OF BLOCK
 		for i in range(self.L, 0):
-			print("TODO")
+			 #must put it in empy blocks TODO
+			self.position_map[new_pos][0] = pos #DEMO
+			self.position_map[new_pos][1] = path #DEMO
+			 
 
 	# *******************************************************************
 	# ****************** RUN DEBUG FUNCTIONS ****************************
