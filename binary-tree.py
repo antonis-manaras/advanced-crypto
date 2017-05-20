@@ -53,26 +53,53 @@ def makeList(tree):
 #
 #
 
-# level 0 (root)
-root = Tree("B1")
-# level 1
-root.left = Tree("??")
-root.right = Tree("B3")
-# level 2
-root.left.left = Tree("B4")
-root.left.right = Tree("B5")
-root.right.left = Tree("??")
-root.right.right = Tree("B7")
-# level 3
-root.left.left.left = Tree("B8")
-root.left.left.right = Tree("??")
-root.left.right.left = Tree("B10")
-root.left.right.right = Tree("B11")
-root.right.left.left = Tree("B12")
-root.right.left.right = Tree("B13")
-root.right.right.left = Tree("??")
-root.right.right.right = Tree("B15")
+# # level 0 (root)
+# root = Tree("B1")
+# # level 1
+# root.left = Tree("??")
+# root.right = Tree("B3")
+# # level 2
+# root.left.left = Tree("B4")
+# root.left.right = Tree("B5")
+# root.right.left = Tree("??")
+# root.right.right = Tree("B7")
+# # level 3
+# root.left.left.left = Tree("B8")
+# root.left.left.right = Tree("??")
+# root.left.right.left = Tree("B10")
+# root.left.right.right = Tree("B11")
+# root.right.left.left = Tree("B12")
+# root.right.left.right = Tree("B13")
+# root.right.right.left = Tree("??")
+# root.right.right.right = Tree("B15")
 
+# TEST!
+# Edw bazw anti gia Bx se kathe node, ena dictionary pou periexei
+# ena synolo apo blocks (3 gia twra).
+# Douleyei, alla to meionektima einai oti logw tis symperiforas Typwnw
+# dictionaries stin python, otan diavaseis ena dictionary, epistrefei
+# ta zeygi key : value se anakatemeni seira. <-- TODO
+
+
+# level 0 (root)
+root = Tree({"B1" : "aa", "B2" : "ab", "B3" : "??"})
+# level 1
+root.left = Tree({"B2" : "fa", "B3" : "??", "B4" : "fd"})
+root.right = Tree({"B5" : "a", "B6" : "b", "B7" : "??"})
+# level 2
+root.left.left = Tree({"B8" : "kd", "B9" : "od", "B10" : "di"})
+root.left.right = Tree({"B11" : "ut", "B12" : "sb", "B13" : "lm"})
+root.right.left = Tree({"B15" : "??", "B16" : "bc", "B17" : "gg"})
+root.right.right = Tree({"B18" : "kl", "B19" : "??", "B20" : "ml"})
+# level 3
+root.left.left.left = Tree({"B21" : "as", "B22" : "??", "B23" : "le"})
+root.left.left.right = Tree({"B24" : "an", "B25" : "kb", "B26" : "??"})
+root.left.right.left = Tree({"B27" : "da", "B28" : "bs", "B29" : "nb"})
+root.left.right.right = Tree({"B30" : "??", "B31" : "lf", "B32" : "dc"})
+root.right.left.left = Tree({"B33" : "lk", "B34" : "op", "B35" : "??"})
+root.right.left.right = Tree({"B36" : "hr", "B37" : "nu", "B38" : "de"})
+root.right.right.left = Tree({"B39" : "sk", "B40" : "??", "B41" : "cs"})
+root.right.right.right = Tree({"B42" : "??", "B43" : "qw", "B44" : "bi"})
 
 # Typwnw tin lista me ola ta paths
 print "========================================"
