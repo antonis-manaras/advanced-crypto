@@ -1,4 +1,6 @@
 #import random as r
+import pprint
+
 
 # Poly tempeliko gemisma dentrou, alla douleyei i anazitisi tou
 # path.
@@ -110,6 +112,25 @@ paths = makeList(root)
 print paths
 print "\n\n"
 
+
+# Dinw ena id se kathe path
+def pathId():
+    path_dict = {}
+    for i,path in enumerate(paths):
+        #print "Path " + str(i) + ": " + str(path)
+        path_dict.update({ i : path})
+        #print path_dict
+    return path_dict
+
+# Typwnw me eydiakrito tropo ta paths
+def printPaths(pdict):
+    pprint.pprint(pdict)
+
+get_paths = pathId()
+printPaths(get_paths)
+
+print "\n\n"
+
 # Dialegw px to 3o path gia na doylepsw
 print "========================================"
 print "=       Dialegw to path gia            ="
@@ -118,6 +139,18 @@ print "=       Estw to trito ([2])            ="
 print "========================================"
 print "\n\n"
 
+# Position man
+def createPositionMap():
+    position_map = {}
+    for i in range(45):
+        print "B" + str(i)
+        # if "B" + str(i)
+
+
+createPositionMap()
+
+# def selectPath():
+#     if
 selected_path = paths[2]
 print selected_path
 print "\n\n"
@@ -131,5 +164,5 @@ print "========================================"
 print "\n\n"
 
 block_for_use = selected_path[3]
-print " Block pros epeksergasia: " + str(block_for_use)
+print " Bucket pros epeksergasia: " + str(block_for_use)
 print "\n\n"
