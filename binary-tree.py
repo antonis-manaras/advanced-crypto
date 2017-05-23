@@ -107,13 +107,19 @@ root.right.right.right = Tree({"B42" : "??", "B43" : "qw", "B44" : "bi"})
 print "========================================"
 print "=                Paths                 ="
 print "========================================"
-print "\n\n"
+print "\n"
 paths = makeList(root)
 print paths
-print "\n\n"
+print "\n"
 
 
 # Dinw ena id se kathe path
+print "\n\n"
+print "========================================"
+print "=             Give id and              ="
+print "=           printing the paths         ="
+print "========================================"
+print "\n"
 def pathId():
     path_dict = {}
     for i,path in enumerate(paths):
@@ -129,31 +135,57 @@ def printPaths(pdict):
 get_paths = pathId()
 printPaths(get_paths)
 
-print "\n\n"
+print "\n"
+
+# Typwnw me eydiakrito tropo ta paths
+
+
+
+
+# Dimiourgw kai typwnw to position map
+print "========================================"
+print "=            Position Map              ="
+print "========================================"
+print "\n"
+
+position_map = {}
+
+def createPositionMap(path_dict):
+    # block = "a5"
+    for i in range(45):
+        block = "B" + str(i)
+        for key, value in path_dict.items():
+            for element in value:
+                found = element.get(block)
+                if found:
+                    # print "B" + str(i) + ", with value (" + str(found) + ") found in path with id: " + str(key)
+                    position_map[block] = key
+    # print "\n"
+    return pprint.pprint(position_map)
+createPositionMap(get_paths)
+
 
 # Dialegw px to 3o path gia na doylepsw
+# Debug: Select path (hardcoded for now)
+#
+# TODO: Check if block exists in the
+# position_map and if yes
+# get the correct path
+
+print "\n"
 print "========================================"
 print "=       Dialegw to path gia            ="
 print "=        na to epeksergastw            ="
 print "=       Estw to trito ([2])            ="
 print "========================================"
-print "\n\n"
+print "\n"
 
-# Position man
-def createPositionMap():
-    position_map = {}
-    for i in range(45):
-        print "B" + str(i)
-        # if "B" + str(i)
-
-
-createPositionMap()
-
-# def selectPath():
-#     if
 selected_path = paths[2]
 print selected_path
-print "\n\n"
+print "\n"
+
+# TODO: Edw tha mpei to parsing tou path 
+# gia na paroume to value
 
 # Estw oti thelw to block sti thesi 3
 print "========================================"
@@ -161,8 +193,8 @@ print "=       Estw oti thelw to              ="
 print "=        4o stoixeio, stin             ="
 print "=       thesi `selected_path[3]`       ="
 print "========================================"
-print "\n\n"
+print "\n"
 
 block_for_use = selected_path[3]
 print " Bucket pros epeksergasia: " + str(block_for_use)
-print "\n\n"
+print "\n"
