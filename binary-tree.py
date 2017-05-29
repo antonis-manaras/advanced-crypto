@@ -34,71 +34,52 @@ def makeList(tree):
 # Gemisma dentrou
 # ==================
 # Estw oti to dentro einai tis morfis:
-# level o                       [B1]
+# level o                       [  ]
 #                             /      \
 #                   root.l   /         \    root.r
 #                           /            \
-# level 1                 [??]            [B3]
+# level 1                 [  ]            [  ]
 #                         /  \             / \
 #           root.l.l    /     \  r     l  /    \    root.r.r
 #                     /        \          /       \
-# level 2            [B4]      [B5]      [??]      [B7]
+# level 2            [  ]      [  ]      [  ]      [  ]
 #                   / \        / \        / \        / \
 #      root.l.l.l  /  \ r   l /   \r    l /   \ r  l /   \    root.r.r.r
 #                 /   \      /     \      /    \     /     \
-# level 3      [B8]  [??] [B10]  [B11] [B12] [B13] [??]   [B15]
+# level 3      [   ]  [  ] [  ]  [  ]    [  ] [  ] [  ]   [  ]
 #
 #
 #
 #
-
-# # level 0 (root)
-# root = Tree("B1")
-# # level 1
-# root.left = Tree("??")
-# root.right = Tree("B3")
-# # level 2
-# root.left.left = Tree("B4")
-# root.left.right = Tree("B5")
-# root.right.left = Tree("??")
-# root.right.right = Tree("B7")
-# # level 3
-# root.left.left.left = Tree("B8")
-# root.left.left.right = Tree("??")
-# root.left.right.left = Tree("B10")
-# root.left.right.right = Tree("B11")
-# root.right.left.left = Tree("B12")
-# root.right.left.right = Tree("B13")
-# root.right.right.left = Tree("??")
-# root.right.right.right = Tree("B15")
 
 # TEST!
 # Edw bazw anti gia Bx se kathe node, ena dictionary pou periexei
 # ena synolo apo blocks (3 gia twra).
 # Douleyei, alla to meionektima einai oti logw tis symperiforas Typwnw
 # dictionaries stin python, otan diavaseis ena dictionary, epistrefei
-# ta zeygi key : value se anakatemeni seira. <-- TODO
+# ta zeygi key : value se anakatemeni seira.
+# Lythike me pprint
 
 
 # level 0 (root)
-root = Tree({"B1" : "aa", "B2" : "ab", "B3" : "??"})
+root = Tree({"B01" : "aa", "B02" : "ab", "B03" : "??"})
 # level 1
-root.left = Tree({"B2" : "fa", "B3" : "??", "B4" : "fd"})
-root.right = Tree({"B5" : "a", "B6" : "b", "B7" : "??"})
+root.left = Tree({"B04" : "fa", "B05" : "??", "B06" : "fd"})
+root.right = Tree({"B07" : "a", "B08" : "b", "B09" : "??"})
 # level 2
-root.left.left = Tree({"B8" : "kd", "B9" : "od", "B10" : "di"})
-root.left.right = Tree({"B11" : "ut", "B12" : "sb", "B13" : "lm"})
-root.right.left = Tree({"B15" : "??", "B16" : "bc", "B17" : "gg"})
-root.right.right = Tree({"B18" : "kl", "B19" : "??", "B20" : "ml"})
+root.left.left = Tree({"B10" : "kd", "B11" : "od", "B12" : "di"})
+root.left.right = Tree({"B13" : "ut", "B14" : "sb", "B15" : "lm"})
+root.right.left = Tree({"B16" : "??", "B17" : "bc", "B18" : "gg"})
+root.right.right = Tree({"B19" : "kl", "B20" : "??", "B21" : "ml"})
 # level 3
-root.left.left.left = Tree({"B21" : "as", "B22" : "??", "B23" : "le"})
-root.left.left.right = Tree({"B24" : "an", "B25" : "kb", "B26" : "??"})
-root.left.right.left = Tree({"B27" : "da", "B28" : "bs", "B29" : "nb"})
-root.left.right.right = Tree({"B30" : "??", "B31" : "lf", "B32" : "dc"})
-root.right.left.left = Tree({"B33" : "lk", "B34" : "op", "B35" : "??"})
-root.right.left.right = Tree({"B36" : "hr", "B37" : "nu", "B38" : "de"})
-root.right.right.left = Tree({"B39" : "sk", "B40" : "??", "B41" : "cs"})
-root.right.right.right = Tree({"B42" : "??", "B43" : "qw", "B44" : "bi"})
+root.left.left.left = Tree({"B22" : "as", "B23" : "??", "B24" : "le"})
+root.left.left.right = Tree({"B25" : "an", "B26" : "kb", "B27" : "??"})
+root.left.right.left = Tree({"B28" : "da", "B29" : "bs", "B30" : "nb"})
+root.left.right.right = Tree({"B31" : "??", "B32" : "lf", "B33" : "dc"})
+root.right.left.left = Tree({"B34" : "lk", "B35" : "op", "B36" : "??"})
+root.right.left.right = Tree({"B37" : "hr", "B38" : "nu", "B39" : "de"})
+root.right.right.left = Tree({"B40" : "sk", "B41" : "??", "B42" : "cs"})
+root.right.right.right = Tree({"B43" : "??", "B44" : "qw", "B45" : "bi"})
 
 # Typwnw tin lista me ola ta paths
 print "========================================"
@@ -106,7 +87,7 @@ print "=                Paths                 ="
 print "========================================"
 print "\n"
 paths = makeList(root)
-print paths
+pprint.pprint(paths)
 print "\n"
 
 
@@ -149,8 +130,10 @@ position_map = {}
 
 def createPositionMap(path_dict):
     # block = "a5"
-    for i in range(45):
-        block = "B" + str(i)
+    for i in range(46):
+        # Here we use zfill(2), in order to get two digits, e.g. 00, 01, 01, etc
+        block = "B" + str(i).zfill(2)
+        # print block # DEBUG
         for key, value in path_dict.items():
             for element in value:
                 found = element.get(block)
@@ -181,7 +164,7 @@ selected_path = paths[2]
 print selected_path
 print "\n"
 
-# TODO: Edw tha mpei to parsing tou path 
+# TODO: Edw tha mpei to parsing tou path
 # gia na paroume to value
 
 # Estw oti thelw to block sti thesi 3
@@ -215,7 +198,7 @@ def access_oram(op, pos, data):
 		x = pos
 		#[STEP2] change this pos to random (0...2^L-1)
 		new_pos = random.randint(0, math.pow(2, L-1))
-		print("[DEBUG] random pos: " + str(new_pos))		
+		print("[DEBUG] random pos: " + str(new_pos))
 
 
 		#[STEP3] We read all blocks from this path
@@ -223,11 +206,11 @@ def access_oram(op, pos, data):
 		for i in range(0, L):
 			print(selected_path[i])
 
-		#[STEP4] data = block at position (pos) from stack 
-		
+		#[STEP4] data = block at position (pos) from stack
+
 		#[STEP5] check if op is write (and remove this block from the stash)
 		#if op == "write":
-						
+
 		#[STEP6] CHANGE POSITION OF BLOCK
 		#for i in range(L, 0):
 			 #must put it in empy blocks TODO
