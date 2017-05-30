@@ -61,6 +61,8 @@ def makeList(tree):
 # Lythike me pprint
 
 
+tree_length = 46 #ta max nodes tou tree
+
 # level 0 (root)
 root = Tree({"B01" : "aa", "B02" : "ab", "B03" : "??"})
 # level 1
@@ -130,7 +132,7 @@ position_map = {}
 
 def createPositionMap(path_dict):
     # block = "a5"
-    for i in range(46):
+    for i in range(tree_length):
         # Here we use zfill(2), in order to get two digits, e.g. 00, 01, 01, etc
         block = "B" + str(i).zfill(2)
         # print block # DEBUG
@@ -191,7 +193,7 @@ print "\n"
 
 
 L = 3 #3 nodes vazeis
-
+selected_path = 0
 
 def access_oram(op, pos, data):
 		#[STEP1] store current position
@@ -201,20 +203,23 @@ def access_oram(op, pos, data):
 		print("[DEBUG] random pos: " + str(new_pos))
 
 
-		#[STEP3] We read all blocks from this path
-		selected_path = paths[pos]
-		for i in range(0, L):
-			print(selected_path[i])
+		#[STEP3] We find and read all blocks from this path
+        for i in range(tree_length):
+            if position_map[i] = pos: #[TODO] search for BLOCK (to pos se auti ti sinartisi) in position map and get path
+		        selected_path = paths[i]
+		#Get all blocks from this path        
+        for j in range(0, L):
+		    print(selected_path[j])
 
-		#[STEP4] data = block at position (pos) from stack
+		#[STEP4] [TODO] data = block at position (pos) from stack
 
-		#[STEP5] check if op is write (and remove this block from the stash)
+		#[STEP5] [TODO] check if op is write (and remove this block from the stash)
 		#if op == "write":
 
-		#[STEP6] CHANGE POSITION OF BLOCK
+		#[STEP6] [TODO] CHANGE POSITION OF BLOCK
 		#for i in range(L, 0):
 			 #must put it in empy blocks TODO
 		#	position_map[new_pos][0] = pos #DEMO
 		#	position_map[new_pos][1] = path #DEMO
 
-access_oram('read', 3, '')
+access_oram('read', 'B05', '')
