@@ -190,36 +190,42 @@ print "=       tha zitao B12 ara TODO         ="
 print "========================================"
 print "\n"
 
+def get_pos(pmap, pos):
+    selected_path = ""
+    for key in pmap:
+        # print key DEBUG
+        for value in str(pmap[key]):
+            # print value DEBUG
+            if pos in key:
+                selected_path = value
+    return selected_path
 
+# print "Selected path: " + str(get_pos(position_map, 'B05')) # DEBUG
 
 L = 3 #3 nodes vazeis
-selected_path = 0
+# selected_path = ""
 
 def access_oram(op, pos, data):
-		#[STEP1] store current position
-		x = pos
-		#[STEP2] change this pos to random (0...2^L-1)
-		new_pos = random.randint(0, math.pow(2, L-1))
-		print("[DEBUG] random pos: " + str(new_pos))
 
+    # [STEP 1]
+    x = pos
+    # [STEP 2]
+    new_pos = random.randint(0, math.pow(2, L-1))
+    print "[DEBUG] Random pos: " + str(new_pos)
 
-		#[STEP3] We find and read all blocks from this path
-        for i in range(tree_length):
-            if position_map[i] = pos: #[TODO] search for BLOCK (to pos se auti ti sinartisi) in position map and get path
-		        selected_path = paths[i]
-		#Get all blocks from this path        
-        for j in range(0, L):
-		    print(selected_path[j])
+    # [STEP 3]
+    selected_path = get_pos(position_map, pos)
+    print "Selected path: " + str(selected_path)
 
-		#[STEP4] [TODO] data = block at position (pos) from stack
+    # [STEP 4] [TODO] data = block at position (pos) from stack
 
-		#[STEP5] [TODO] check if op is write (and remove this block from the stash)
-		#if op == "write":
+    # [STEP 5] [TODO] check if op is write (and remove this block from the stash)
+	# if op == "write":
 
-		#[STEP6] [TODO] CHANGE POSITION OF BLOCK
-		#for i in range(L, 0):
-			 #must put it in empy blocks TODO
-		#	position_map[new_pos][0] = pos #DEMO
-		#	position_map[new_pos][1] = path #DEMO
+    # [STEP 6] [TODO] CHANGE POSITION OF BLOCK
+	# for i in range(L, 0):
+		 #must put it in empy blocks TODO
+	#	position_map[new_pos][0] = pos #DEMO
+	#	position_map[new_pos][1] = path #DEMO
 
 access_oram('read', 'B05', '')
