@@ -185,13 +185,12 @@ print "\n"
 
 print "========================================"
 print "=           ACCESS ORAM                ="
-print "=    esto zitao path 3, kanonika       ="
-print "=       tha zitao B12 ara TODO         ="
+print "=    	   esto zitao B03              ="
 print "========================================"
 print "\n"
 
 def get_pos(pmap, pos):
-    selected_path = ""
+    selected_path = 0
     for key in pmap:
         # print key DEBUG
         for value in str(pmap[key]):
@@ -203,24 +202,29 @@ def get_pos(pmap, pos):
 # print "Selected path: " + str(get_pos(position_map, 'B05')) # DEBUG
 
 L = 3 #3 nodes vazeis
-# selected_path = ""
 
 def access_oram(op, pos, data):
-
     # [STEP 1]
     x = pos
     # [STEP 2]
     new_pos = random.randint(0, math.pow(2, L-1))
-    print "[DEBUG] Random pos: " + str(new_pos)
+    print "Random pos: " + str(new_pos)
 
     # [STEP 3]
-    selected_path = get_pos(position_map, pos)
-    print "Selected path: " + str(selected_path)
+    path = get_pos(position_map, pos)
+    print "Selected path: " + str(path)
 
-    # [STEP 4] [TODO] data = block at position (pos) from stack
+    # [STEP 4]
+    for i in range(tree_length):
+        for key, value in selected_path[0].items():
+        	if key == pos:
+        		data = value
+        		break
+    print("data of " + pos + ": " + data)
 
     # [STEP 5] [TODO] check if op is write (and remove this block from the stash)
-	# if op == "write":
+    if op == "write":
+		print("Write: [TODO]")
 
     # [STEP 6] [TODO] CHANGE POSITION OF BLOCK
 	# for i in range(L, 0):
@@ -228,4 +232,4 @@ def access_oram(op, pos, data):
 	#	position_map[new_pos][0] = pos #DEMO
 	#	position_map[new_pos][1] = path #DEMO
 
-access_oram('read', 'B05', '')
+access_oram('write', 'B03', '')
