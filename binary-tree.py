@@ -69,17 +69,17 @@ root = Tree({"B01" : "aa", "B02" : "ab", "B03" : "??"})
 root.left = Tree({"B04" : "fa", "B05" : "??", "B06" : "fd"})
 root.right = Tree({"B07" : "a", "B08" : "b", "B09" : "??"})
 # level 2
-root.left.left = Tree({"B10" : "kd", "B11" : "od", "B12" : "di"})
-root.left.right = Tree({"B13" : "ut", "B14" : "sb", "B15" : "lm"})
+root.left.left = Tree({"B10" : "kd", "B11" : "??", "B12" : "di"})
+root.left.right = Tree({"B13" : "ut", "B14" : "sb", "B15" : "??"})
 root.right.left = Tree({"B16" : "??", "B17" : "bc", "B18" : "gg"})
 root.right.right = Tree({"B19" : "kl", "B20" : "??", "B21" : "ml"})
 # level 3
 root.left.left.left = Tree({"B22" : "as", "B23" : "??", "B24" : "le"})
 root.left.left.right = Tree({"B25" : "an", "B26" : "kb", "B27" : "??"})
-root.left.right.left = Tree({"B28" : "da", "B29" : "bs", "B30" : "nb"})
+root.left.right.left = Tree({"B28" : "??", "B29" : "bs", "B30" : "nb"})
 root.left.right.right = Tree({"B31" : "??", "B32" : "lf", "B33" : "dc"})
 root.right.left.left = Tree({"B34" : "lk", "B35" : "op", "B36" : "??"})
-root.right.left.right = Tree({"B37" : "hr", "B38" : "nu", "B39" : "de"})
+root.right.left.right = Tree({"B37" : "hr", "B38" : "??", "B39" : "de"})
 root.right.right.left = Tree({"B40" : "sk", "B41" : "??", "B42" : "cs"})
 root.right.right.right = Tree({"B43" : "??", "B44" : "qw", "B45" : "bi"})
 
@@ -207,7 +207,7 @@ def access_oram(op, pos, data):
     # [STEP 1]
     x = pos
     # [STEP 2]
-    new_pos = random.randint(0, math.pow(2, L-1))
+    new_pos = random.randint(0, (math.pow(2, L-1)-1))
     print "Random pos: " + str(new_pos)
 
     # [STEP 3]
@@ -227,9 +227,13 @@ def access_oram(op, pos, data):
 		print("Write: [TODO]")
 
     # [STEP 6] [TODO] CHANGE POSITION OF BLOCK
-	# for i in range(L, 0):
-		 #must put it in empy blocks TODO
-	#	position_map[new_pos][0] = pos #DEMO
-	#	position_map[new_pos][1] = path #DEMO
+    print(selected_path[new_pos])
+    for key, value in selected_path[new_pos].items():
+        if value == '??':
+        	print("Writing on dummy Block " + key + " = " + value)
+        	#WRITE [TODO]
+        	break
+    print("Updated bucket: " + str(selected_path[new_pos]))
+
 
 access_oram('write', 'B03', '')
