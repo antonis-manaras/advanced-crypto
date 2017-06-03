@@ -80,7 +80,7 @@ root.left.right.left = Tree({"B28" : "??", "B29" : "bs", "B30" : "nb"})
 root.left.right.right = Tree({"B31" : "??", "B32" : "lf", "B33" : "dc"})
 root.right.left.left = Tree({"B34" : "lk", "B35" : "op", "B36" : "??"})
 root.right.left.right = Tree({"B37" : "hr", "B38" : "??", "B39" : "de"})
-root.right.right.left = Tree({"B40" : "sk", "B41" : "??", "B42" : "cs"})
+root.right.right.left = Tree({"B40" : "sk", "B41" : "gg", "B42" : "cs"})
 root.right.right.right = Tree({"B43" : "??", "B44" : "qw", "B45" : "bi"})
 
 # Typwnw tin lista me ola ta paths
@@ -96,8 +96,8 @@ print ("\n")
 # Dinw ena id se kathe path
 print ("\n\n")
 print ("========================================")
-print ("=             Give id and              =")
-print ("=           printing the paths         =")
+print ("=             Dinw ids kai             =")
+print ("=           typwnw ta paths            =")
 print ("========================================")
 print ("\n")
 
@@ -187,7 +187,8 @@ createPositionMap(get_paths)
 
 print ("========================================")
 print ("=           ACCESS ORAM                =")
-print ("=    	   esto zitao B03              =")
+print ("=    	   estw oti zitao              =")
+print ("=          to block B45                =")
 print ("========================================")
 print ("\n")
 
@@ -245,10 +246,12 @@ def get_new_pos(path_dict, new_pos):
         # print("Items in path_dict: " + str(item))
         if item[0] == new_pos:
             print ("Found the new path!" + str(item))
+            print("\n")
             for bucket in reversed(item[1]):
                 for key, value in bucket.items():
                     if value == "??":
                         print("I will write on Block " + key + " with is dummy: " + value)
+                        print("\n")
                         return key
                 break
 
@@ -263,15 +266,18 @@ def write_block(path_dict, block_from, block_to):
                     # print key_from + " : " + value_from
                     if key_from == block_from:
                         print("Found block : " + key_from + " --> " + value_from)
+                        print("\n")
                         data_to_write = value_from
                         bucket_from[block_from] = '??'
                         bucket_from[block_to] = bucket_from.pop(block_from)
                         print("Data to be written: " + data_to_write)
+                        print("\n")
     for item2 in path_dict.items():
         for bucket_to in item2[1]:
             for key_to, value_to in bucket_to.items():
                 if key_to == block_to:
                     print("Found block to write: " + key_to + " --> " + value_to)
+                    print("\n")
                     bucket_to["B00"] = data_to_write
                     # bucket_to[key_to] = data_to_write
                     del bucket_to[key_to]
@@ -290,11 +296,13 @@ def access_oram(op, pos, data):
     # [STEP 2]
     new_pos = random.randint(0, (math.pow(2, L-1)-1)) # <------ FIX ME! - (FIXED)
     print ("Random pos: " + str(new_pos))
+    print("\n")
 
     # [STEP 3]
     path = get_pos(position_map, pos)
     # selected_path = paths[path_to_work]
     print ("Selected path: " + str(path))
+    print("\n")
     # print "Selected path: " + str(selected_path)
 
     # selected_path = paths[path_to_work]
@@ -302,6 +310,7 @@ def access_oram(op, pos, data):
     # [STEP 4]
     data = get_data(path_dict, pos)
     print("Data of " + pos + ": " + data)
+    print("\n")
 
 	# [STEP 5] [TODO] check if op is write (and remove this block from the stash)
     if op == "write":
@@ -311,7 +320,14 @@ def access_oram(op, pos, data):
 
         new_data = get_data(path_dict, new_position)
         print("Updated block: " + str(new_position) + " with : " + str(data_to_write))
-
+        print("\n")
 
 access_oram('write', 'B45', '')
 pprint.pprint(path_dict)
+
+print ("========================================")
+print ("=          Neo Position Map            =")
+print ("=     To B45 exei allaksei path!       =")
+print ("========================================")
+print ("\n")
+createPositionMap(get_paths)
