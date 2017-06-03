@@ -272,8 +272,12 @@ def write_block(path_dict, block_from, block_to):
             for key_to, value_to in bucket_to.items():
                 if key_to == block_to:
                     print("Found block to write: " + key_to + " --> " + value_to)
-                    bucket_to[key_to] = data_to_write
-                    print("New value for block: " + key_to + " : " + bucket_to[key_to])
+                    bucket_to["B00"] = data_to_write
+                    # bucket_to[key_to] = data_to_write
+                    del bucket_to[key_to]
+                    bucket_to[block_from] = bucket_to["B00"]
+                    del bucket_to["B00"]
+                    # print("New value for block: " + key_to + " : " + bucket_to[key_to])
                     return data_to_write
 
 
