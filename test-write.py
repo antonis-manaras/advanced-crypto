@@ -84,22 +84,22 @@ root.right.right.left = Tree({"B40" : "sk", "B41" : "??", "B42" : "cs"})
 root.right.right.right = Tree({"B43" : "??", "B44" : "qw", "B45" : "bi"})
 
 # Typwnw tin lista me ola ta paths
-print "========================================"
-print "=                Paths                 ="
-print "========================================"
-print "\n"
+print ("========================================")
+print ("=                Paths                 =")
+print ("========================================")
+print ("\n")
 paths = makeList(root)
 pprint.pprint(paths)
-print "\n"
+print ("\n")
 
 
 # Dinw ena id se kathe path
-print "\n\n"
-print "========================================"
-print "=             Give id and              ="
-print "=           printing the paths         ="
-print "========================================"
-print "\n"
+print ("\n\n")
+print ("========================================")
+print ("=             Give id and              =")
+print ("=           printing the paths         =")
+print ("========================================")
+print ("\n")
 
 path_dict = {}
 def pathId():
@@ -117,7 +117,7 @@ def printPaths(pdict):
 get_paths = pathId() # path_dict
 printPaths(get_paths)
 
-print "\n"
+print ("\n")
 
 # Typwnw me eydiakrito tropo ta paths
 
@@ -125,10 +125,10 @@ print "\n"
 
 
 # Dimiourgw kai typwnw to position map
-print "========================================"
-print "=            Position Map              ="
-print "========================================"
-print "\n"
+print ("========================================")
+print ("=            Position Map              =")
+print ("========================================")
+print ("\n")
 
 position_map = {}
 
@@ -185,11 +185,11 @@ createPositionMap(get_paths)
 
 #TODO ACCESS ORAM
 
-print "========================================"
-print "=           ACCESS ORAM                ="
-print "=    	   esto zitao B03              ="
-print "========================================"
-print "\n"
+print ("========================================")
+print ("=           ACCESS ORAM                =")
+print ("=    	   esto zitao B03              =")
+print ("========================================")
+print ("\n")
 
 def get_pos(pmap, pos):
     npath = 0
@@ -244,7 +244,7 @@ def get_new_pos(path_dict, new_pos):
     for item in path_dict.items():
         # print("Items in path_dict: " + str(item))
         if item[0] == new_pos:
-            print "Found the new path!" + str(item)
+            print ("Found the new path!" + str(item))
             for bucket in reversed(item[1]):
                 for key, value in bucket.items():
                     if value == "??":
@@ -252,11 +252,7 @@ def get_new_pos(path_dict, new_pos):
                         return key
                 break
 
-print('''
 
-TEST for writing
-
-''')
 def write_block(path_dict, block_from, block_to):
     for item in path_dict.items():
         # print("Items in path_dict: " + str(item))
@@ -268,9 +264,10 @@ def write_block(path_dict, block_from, block_to):
                     if key_from == block_from:
                         print("Found block : " + key_from + " --> " + value_from)
                         data_to_write = value_from
+                        bucket_from[block_from] = '??'
                         print("Data to be written: " + data_to_write)
-    for item in path_dict.items():
-        for bucket_to in item[1]:
+    for item2 in path_dict.items():
+        for bucket_to in item2[1]:
             for key_to, value_to in bucket_to.items():
                 if key_to == block_to:
                     print("Found block to write: " + key_to + " --> " + value_to)
@@ -279,50 +276,37 @@ def write_block(path_dict, block_from, block_to):
                     return data_to_write
 
 
-b_before = "B45"
-b_after = "B23"
-write_block(path_dict, b_before, b_after)
 
+L = 4
+def access_oram(op, pos, data):
+    # [STEP 1]
+    x = pos
+
+    # [STEP 2]
+    new_pos = random.randint(0, (math.pow(2, L-1)-1)) # <------ FIX ME! - (FIXED)
+    print ("Random pos: " + str(new_pos))
+
+    # [STEP 3]
+    path = get_pos(position_map, pos)
+    # selected_path = paths[path_to_work]
+    print ("Selected path: " + str(path))
+    # print "Selected path: " + str(selected_path)
+
+    # selected_path = paths[path_to_work]
+
+    # [STEP 4]
+    data = get_data(path_dict, pos)
+    print("Data of " + pos + ": " + data)
+
+	# [STEP 5] [TODO] check if op is write (and remove this block from the stash)
+    if op == "write":
+        new_position = get_new_pos(path_dict, new_pos)
+
+        data_to_write = write_block(path_dict, pos, new_position)
+
+        new_data = get_data(path_dict, new_position)
+        print("Updated block: " + str(new_position) + " with : " + str(data_to_write))
+
+
+access_oram('write', 'B45', '')
 pprint.pprint(path_dict)
-
-print('''
-
-TEST for writing - END
-
-''')
-
-#
-# L = 4
-# def access_oram(op, pos, data):
-#     # [STEP 1]
-#     x = pos
-#
-#     # [STEP 2]
-#     new_pos = random.randint(0, (math.pow(2, L-1)-1)) # <------ FIX ME! - (FIXED)
-#     print "Random pos: " + str(new_pos)
-#
-#     # [STEP 3]
-#     path = get_pos(position_map, pos)
-#     # selected_path = paths[path_to_work]
-#     print "Selected path: " + str(path)
-#     # print "Selected path: " + str(selected_path)
-#
-#     # selected_path = paths[path_to_work]
-#
-#     # [STEP 4]
-#     data = get_data(path_dict, pos)
-#     print("Data of " + pos + ": " + data)
-#
-#     # [STEP 5] [TODO] check if op is write (and remove this block from the stash)
-#     if op == "write":
-#         new_position = get_new_pos(path_dict, new_pos)
-#         print("Writing: " + data + " to " + new_position + "... [TODO]")
-#
-#         data_to_write = write_block(path_dict, pos, new_pos)
-#
-#
-#         new_data = get_data(path_dict, new_position)
-#         print("Updated block: " + str(new_position) + " with : " + str(data_to_write))
-#
-#
-# access_oram('write', 'B45', '')
