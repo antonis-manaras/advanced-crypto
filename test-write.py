@@ -265,6 +265,7 @@ def write_block(path_dict, block_from, block_to):
                         print("Found block : " + key_from + " --> " + value_from)
                         data_to_write = value_from
                         bucket_from[block_from] = '??'
+                        bucket_from[block_to] = bucket_from.pop(block_from)
                         print("Data to be written: " + data_to_write)
     for item2 in path_dict.items():
         for bucket_to in item2[1]:
